@@ -14,6 +14,9 @@ function Navbar() {
       <Nav.Item>
         <Nav.Link onClick={() => navigate('/all-students')}>Students</Nav.Link>
       </Nav.Item>
+      <Nav.Item>
+        <Nav.Link onClick={() => navigate('/assign-student')}>Assign Student</Nav.Link>
+      </Nav.Item>
     </Nav>
   </>
 }

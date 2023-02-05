@@ -19,8 +19,7 @@ function AllTeachers() {
     <Table striped bordered hover>
         <thead>
             <th>#</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Mentor Name</th>
             <th>Mobile Number</th>
             <th>Email</th>
             <th>Assigned Students</th>
@@ -31,8 +30,7 @@ function AllTeachers() {
                 data.map((e,i) => {
                     return <tr key={i}>
                         <td>{i+1}</td>
-                        <td>{e.firstName}</td>
-                        <td>{e.lastName}</td>
+                        <td>{e.mentorName}</td>
                         <td>{e.Mobile}</td>
                         <td>{e.Email}</td>
                         <td>{e.Students}</td>

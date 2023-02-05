@@ -5,18 +5,16 @@ export const teachersReducer = createSlice({
     initialState: {
         teachersData :[
             {
-                firstName : "Teacher1",
-                lastName : "T1",
+                mentorName : "Ashok Kumar",
                 Mobile  : "9191919191",
-                Email : "teacher1@gmail.com",
-                Students : "Karthik,Kumar"
+                Email : "ashokkumar@gmail.com",
+                Students : ""
             },
             {
-                firstName : "Teacher2",
-                lastName : "T2",
+                mentorName : "Raja Guru",
                 Mobile  : "9191919191",
-                Email : "teacher2@gmail.com",
-                Students : "Raj"
+                Email : "rajaguru@gmail.com",
+                Students : ""
             }
         ]
     },

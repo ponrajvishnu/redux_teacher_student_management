@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addTeacher } from '../../redux/teachersReducer';
 import { useNavigate } from 'react-router-dom';
+import Select from "react-select";
 
 function AddTeacher() {
 
@@ -11,26 +12,37 @@ function AddTeacher() {
 
     let dispatch = useDispatch();
 
-    let [firstName,setFName] = useState();
-    let [lastName,setLName] = useState();
+    let [mentorName,setFName] = useState();
     let [Mobile,setMobile] = useState();
     let [Email,setEmail] = useState();
     let [Students,setStudents] = useState();
+    let [options,setOptions]=useState([]);
 
+    let studentData = useSelector((state) => state.students.studentsData)
+
+    if(studentData){
+        studentData.map((e) => {
+        options.push({ //initialize options for multi select dropdown
+            value:options.length+1,
+            label:e.studentName
+        })
+        })
+    }
+    
     let handleSumbit = () => {
-        dispatch(addTeacher({firstName,lastName,Mobile,Email,Students}))
+        dispatch(addTeacher({mentorName,Mobile,Email,Students}))
         navigate('/all-teachers')
+    }
+
+    let UpdateSelected = (e)=>{
+        setStudents(Array.isArray(e)?e.map(x=>x.label):[]);
     }
 
   return <div className="container-fluid">
     <Form>
         <Form.Group className="mb-3">
-            <Form.Label>First Name</Form.Label>
+            <Form.Label>Mentor Name</Form.Label>
             <Form.Control type="text" placeholder="Enter First Name" onChange={(e) => setFName(e.target.value)}/>
-        </Form.Group>
-        <Form.Group className="mb-3">
-            <Form.Label>Last Name</Form.Label>
-            <Form.Control type="text" placeholder="Enter Last Name" onChange={(e) => setLName(e.target.value)}/>
         </Form.Group>
         <Form.Group className="mb-3">
             <Form.Label>Mobile</Form.Label>
@@ -40,10 +52,8 @@ function AddTeacher() {
             <Form.Label>Email</Form.Label>
             <Form.Control type="text" placeholder="Enter Email" onChange={(e) => setEmail(e.target.value)}/>
         </Form.Group>
-        <Form.Group className="mb-3">
-            <Form.Label>Assigned Students</Form.Label>
-            <Form.Control type="text" placeholder="Enter Students" onChange={(e) => setStudents(e.target.value)}/>
-        </Form.Group>
+        <label>Students : </label>
+        <Select isMulti options={options} className="input" displayValue="Student" onChange={UpdateSelected}/>
 
         <Button variant="primary" onClick={() => handleSumbit()}>Submit</Button>
     </Form>

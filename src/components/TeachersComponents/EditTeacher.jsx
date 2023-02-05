@@ -15,16 +15,14 @@ function AddTeacher() {
 
     let data = useSelector((state) => state.teachers.teachersData)
     
-    let [firstName,setFName] = useState();
-    let [lastName,setLName] = useState();
+    let [mentorName,setFName] = useState();
     let [Mobile,setMobile] = useState();
     let [Email,setEmail] = useState();
     let [Students,setStudents] = useState();
 
     useEffect(() => {
         if(id && id < data.length){
-            setFName(data[id].firstName)
-            setLName(data[id].lastName)
+            setFName(data[id].mentorName)
             setMobile(data[id].Mobile)
             setEmail(data[id].Email)
             setStudents(data[id].Students)
@@ -34,19 +32,15 @@ function AddTeacher() {
     },[])
 
     let handleSumbit = () => {
-        dispatch(editTeacher({index:id,data:{firstName,lastName,Mobile,Email,Students}}))
+        dispatch(editTeacher({index:id,data:{mentorName,Mobile,Email,Students}}))
         navigate('/all-teachers')
     }
 
   return <div className="container-fluid">
     <Form>
         <Form.Group className="mb-3">
-            <Form.Label>First Name</Form.Label>
-            <Form.Control type="text" value={firstName} placeholder="Enter First Name" onChange={(e) => setFName(e.target.value)}/>
-        </Form.Group>
-        <Form.Group className="mb-3">
-            <Form.Label>Last Name</Form.Label>
-            <Form.Control type="text" value={lastName} placeholder="Enter Last Name" onChange={(e) => setLName(e.target.value)}/>
+            <Form.Label>Mentor Name</Form.Label>
+            <Form.Control type="text" value={mentorName} placeholder="Enter First Name" onChange={(e) => setFName(e.target.value)}/>
         </Form.Group>
         <Form.Group className="mb-3">
             <Form.Label>Mobile</Form.Label>
@@ -55,10 +49,6 @@ function AddTeacher() {
         <Form.Group className="mb-3">
             <Form.Label>Email</Form.Label>
             <Form.Control type="text" value={Email} placeholder="Enter Email" onChange={(e) => setEmail(e.target.value)}/>
-        </Form.Group>
-        <Form.Group className="mb-3">
-            <Form.Label>Assigned Students</Form.Label>
-            <Form.Control type="text" value={Students} placeholder="Enter Students" onChange={(e) => setStudents(e.target.value)}/>
         </Form.Group>
 
         <Button variant="primary" onClick={() => handleSumbit()}>Submit</Button>

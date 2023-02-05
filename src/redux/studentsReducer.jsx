@@ -3,26 +3,22 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     studentsData: [
         {
-            firstName: "Ram",
-            lastName: "Kumar",
-            email: "ramkumar@gmail.com",
-            mentor: "teacher1"
+            studentName: "Kumar",
+            email: "kumar@gmail.com",
+            mentor: ""
         },
         {
-            firstName: "Selva",
-            lastName: "Venkatesh",
+            studentName: "Selva",
             email: "selva@gmail.com",
-            mentor: "teacher2"
+            mentor: ""
         },
         {
-            firstName: "Vasanth",
-            lastName: "Rajan",
+            studentName: "Vasanth",
             email: "vasanthrajan@gmail.com",
             mentor: ""
         },
         {
-            firstName: "Praveen",
-            lastName: "Muthu",
+            studentName: "Praveen",
             email: "praveenmuthu@gmail.com",
             mentor: ""
         }
@@ -32,7 +28,7 @@ const initialState = {
 export const studentsReducer = createSlice({
     name : 'students',
     initialState,
-    reducer: {
+    reducers : {
         addStudent: (state,action) => {
             state.studentsData.push(action.payload);
         },
@@ -41,7 +37,6 @@ export const studentsReducer = createSlice({
         },
         deleteStudent: (state,action) => {
             state.studentsData.splice(action.payload.index,1);
-            //console.log('click');
         }
     }
 })
